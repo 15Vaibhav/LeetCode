@@ -1,45 +1,35 @@
 //LeetCode 234
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
+    public boolean isPalindrome(final ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        
-        while(fast != null && fast.next != null){
+
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        
+
         slow = reversed(slow);
-        fast =  head;
-        
-        while(slow != null) {
-            if(fast.val != slow.val){
+        fast = head;
+
+        while (slow != null) {
+            if (fast.val != slow.val) {
                 return false;
             }
-            
+
             fast = fast.next;
             slow = slow.next;
         }
-        
+
         return true;
     }
-    
-public ListNode reversed(ListNode head) {
+
+    public ListNode reversed(ListNode head) {
         ListNode prev = null;
-        
-        while(head != null){
-           ListNode next = head.next;
+
+        while (head != null) {
+            final ListNode next = head.next;
            head.next = prev;
            prev = head;
             head = next;
